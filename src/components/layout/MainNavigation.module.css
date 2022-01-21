@@ -14,6 +14,11 @@
   font-weight: bold;
 }
 
+.logo a {
+  color: white;
+  text-decoration: none;
+}
+
 .header ul {
   list-style: none;
   margin: 0;
@@ -36,5 +41,18 @@
 .header span:hover,
 .header span:active,
 .header span.active {
+  color: white;
+}
+
+.header li a {
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: rgba(236, 236, 236);
+  cursor: pointer;
+}
+
+.header li a:hover,
+.header li a:active,
+.header li a.active {
   color: white;
 }
