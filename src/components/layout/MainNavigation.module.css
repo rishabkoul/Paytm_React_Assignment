@@ -9,7 +9,7 @@
 }
 
 .logo {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: white;
   font-weight: bold;
 }
@@ -28,12 +28,12 @@
 }
 
 .header li {
-  margin-left: 3rem;
+  margin-left: 2rem;
 }
 
 .header span {
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: rgba(236, 236, 236);
   cursor: pointer;
 }
@@ -46,7 +46,7 @@
 
 .header li a {
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: rgba(236, 236, 236);
   cursor: pointer;
 }
@@ -55,4 +55,33 @@
 .header li a:active,
 .header li a.active {
   color: white;
+}
+
+@media only screen and (min-width: 320px) {
+  .header li {
+    margin-left: 1rem;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  /* for tablet */
+  .header li {
+    margin-left: 3rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  /* for desktop */
+  .header span {
+    font-size: 1.5rem;
+  }
+  .logo {
+    font-size: 2rem;
+  }
+  .header li {
+    margin-left: 3rem;
+  }
+  .header li a {
+    font-size: 1.5rem;
+  }
 }
