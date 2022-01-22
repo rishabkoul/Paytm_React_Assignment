@@ -7,6 +7,7 @@ import RequireAuth from "./components/auth/RequireAuth";
 import RedirectToHome from "./components/auth/RedirectToHome";
 import InvalidPath from "./components/auth/InvalidPath";
 import CreateTodo from "./pages/CreateTodo";
+import EditTodo from "./pages/EditTodo";
 
 const App = () => {
   return (
@@ -36,6 +37,15 @@ const App = () => {
           element={
             <RequireAuth>
               <CreateTodo />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/update-task/:task_id"
+          exact
+          element={
+            <RequireAuth>
+              <EditTodo />
             </RequireAuth>
           }
         />

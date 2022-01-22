@@ -33,6 +33,13 @@ export const todoSlice = createSlice({
       state.todos = state.todos.filter((todo) => todo.checked === false);
       localStorage.setItem("todos", JSON.stringify(state.todos));
     },
+    editTodo: (state, action) => {
+      const index = state.todos.findIndex(
+        (todo) => todo.id === action.payload.id
+      );
+      state.todos[index] = action.payload;
+      localStorage.setItem("todos", JSON.stringify(state.todos));
+    },
   },
 });
 
@@ -43,6 +50,7 @@ export const {
   setCheckedTrue,
   setCheckedFalse,
   deleteChecked,
+  editTodo,
 } = todoSlice.actions;
 
 export const getTodos = (state) => state.todos.todos;

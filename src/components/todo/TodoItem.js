@@ -6,6 +6,7 @@ import {
   setCheckedTrue,
 } from "../../features/todoSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const ComputePastPresentFurture = (duedate) => {
   let today = new Date().setHours(0, 0, 0, 0);
@@ -20,6 +21,7 @@ const ComputePastPresentFurture = (duedate) => {
 };
 
 const TodoItem = ({ id, title, description, duedate, priority, checked }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const DeleteTodo = () => {
     dispatch(deleteTodo(id));
@@ -31,6 +33,10 @@ const TodoItem = ({ id, title, description, duedate, priority, checked }) => {
     } else {
       dispatch(setCheckedTrue(id));
     }
+  };
+
+  const gotoEditPage = () => {
+    navigate(`/update-task/${id}`);
   };
 
   return (
@@ -52,6 +58,7 @@ const TodoItem = ({ id, title, description, duedate, priority, checked }) => {
             }
           >
             <button onClick={DeleteTodo}>Delete</button>
+            <button onClick={gotoEditPage}>Edit</button>
           </div>
         </div>
       </Card>

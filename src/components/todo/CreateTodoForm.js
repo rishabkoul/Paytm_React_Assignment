@@ -1,7 +1,7 @@
 import classes from "./CreateTodoForm.module.css";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../../features/todoSlice";
+import { addTodo, editTodo } from "../../features/todoSlice";
 import { useNavigate } from "react-router-dom";
 
 const getTodaysDateInString = () => {
@@ -20,7 +20,7 @@ const getTodaysDateInString = () => {
   return today;
 };
 
-const CreateTodoForm = () => {
+const CreateTodoForm = ({ todo, formTitle, disabled }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const titleRef = useRef();
@@ -36,24 +36,39 @@ const CreateTodoForm = () => {
     if (!enteredTitle.match(/^[0-9a-zA-Z]+$/)) {
       return alert("Enter alphanumeric Title");
     }
-    dispatch(
-      addTodo({
-        id: new Date().getTime().toString(),
-        title: enteredTitle,
-        description: enteredDescription,
-        duedate: enteredDueDate,
-        priority: enteredPriority,
-        checked: false,
-      })
-    );
+    if (todo) {
+      dispatch(
+        editTodo({
+          id: todo.id,
+          title: enteredTitle,
+          description: enteredDescription,
+          duedate: enteredDueDate,
+          priority: enteredPriority,
+          checked: todo.checked,
+        })
+      );
+      alert("Task edited successfully");
+    } else {
+      dispatch(
+        addTodo({
+          id: new Date().getTime().toString(),
+          title: enteredTitle,
+          description: enteredDescription,
+          duedate: enteredDueDate,
+          priority: enteredPriority,
+          checked: false,
+        })
+      );
 
-    alert("Task created successfully");
+      alert("Task created successfully");
+    }
+
     navigate("/");
   };
   return (
     <div className={classes.container}>
       <form className={classes.form} onSubmit={submitHandler}>
-        <h1>Create Todo</h1>
+        {formTitle ? <h1>{formTitle}</h1> : <h1>Create Todo</h1>}
         <label>Title</label>
         <input
           maxLength="20"
@@ -61,6 +76,8 @@ const CreateTodoForm = () => {
           type="text"
           placeholder="Title"
           ref={titleRef}
+          defaultValue={todo ? todo.title : ""}
+          disabled={disabled}
         />
         <label>Description</label>
         <textarea
@@ -69,6 +86,7 @@ const CreateTodoForm = () => {
           cols="50"
           maxLength="100"
           ref={descriptionRef}
+          defaultValue={todo ? todo.description : ""}
         ></textarea>
         <label>Due Date</label>
         <input
@@ -76,9 +94,15 @@ const CreateTodoForm = () => {
           min={getTodaysDateInString()}
           required
           ref={duedateRef}
+          defaultValue={todo ? todo.duedate : getTodaysDateInString()}
         />
         <label>Priority</label>
-        <select required ref={priorityRef}>
+        <select
+          required
+          ref={priorityRef}
+          defaultValue={todo ? todo.priority : "Medium"}
+          disabled={disabled}
+        >
           <option>Medium</option>
           <option>High</option>
           <option>Low</option>

@@ -9,13 +9,20 @@
 .todo > h3 {
   font-size: x-large;
 }
-.actions,
-.action_white {
+
+.todo > p {
   margin-top: 10px;
+}
+
+.actions button,
+.action_white button {
+  margin: 10px;
+  margin-left: 0;
 }
 
 .todo input[type="checkbox"] {
   cursor: pointer;
+  outline: 2px solid black;
 }
 
 .actions > button {
