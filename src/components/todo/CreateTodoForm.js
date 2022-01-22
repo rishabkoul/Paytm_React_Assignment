@@ -43,6 +43,7 @@ const CreateTodoForm = () => {
         description: enteredDescription,
         duedate: enteredDueDate,
         priority: enteredPriority,
+        checked: false,
       })
     );
 

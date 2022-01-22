@@ -19,10 +19,31 @@ export const todoSlice = createSlice({
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
       localStorage.setItem("todos", JSON.stringify(state.todos));
     },
+    setCheckedTrue: (state, action) => {
+      const index = state.todos.findIndex((todo) => todo.id === action.payload);
+      state.todos[index].checked = true;
+      localStorage.setItem("todos", JSON.stringify(state.todos));
+    },
+    setCheckedFalse: (state, action) => {
+      const index = state.todos.findIndex((todo) => todo.id === action.payload);
+      state.todos[index].checked = false;
+      localStorage.setItem("todos", JSON.stringify(state.todos));
+    },
+    deleteChecked: (state, action) => {
+      state.todos = state.todos.filter((todo) => todo.checked === false);
+      localStorage.setItem("todos", JSON.stringify(state.todos));
+    },
   },
 });
 
-export const { addTodo, deleteAllTodos, deleteTodo } = todoSlice.actions;
+export const {
+  addTodo,
+  deleteAllTodos,
+  deleteTodo,
+  setCheckedTrue,
+  setCheckedFalse,
+  deleteChecked,
+} = todoSlice.actions;
 
 export const getTodos = (state) => state.todos.todos;
 

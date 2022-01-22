@@ -15,6 +15,7 @@ const TodoList = () => {
           description={todo.description}
           duedate={todo.duedate}
           priority={todo.priority}
+          checked={todo.checked}
         />
       ))}
     </ul>

@@ -1,6 +1,10 @@
 import Card from "../ui/Card";
 import classes from "./TodoItem.module.css";
-import { deleteTodo } from "../../features/todoSlice";
+import {
+  deleteTodo,
+  setCheckedFalse,
+  setCheckedTrue,
+} from "../../features/todoSlice";
 import { useDispatch } from "react-redux";
 
 const ComputePastPresentFurture = (duedate) => {
@@ -15,17 +19,28 @@ const ComputePastPresentFurture = (duedate) => {
   }
 };
 
-const TodoItem = ({ id, title, description, duedate, priority }) => {
+const TodoItem = ({ id, title, description, duedate, priority, checked }) => {
   const dispatch = useDispatch();
   const DeleteTodo = () => {
     dispatch(deleteTodo(id));
+  };
+
+  const selectHandler = () => {
+    if (checked) {
+      dispatch(setCheckedFalse(id));
+    } else {
+      dispatch(setCheckedTrue(id));
+    }
   };
 
   return (
     <li className={classes.todo_container}>
       <Card className={ComputePastPresentFurture(duedate)}>
         <div className={classes.todo}>
-          <h3>Title - {title}</h3>
+          <div className={classes.single_line}>
+            <h3>Title - {title}</h3>
+            <input type="checkbox" onChange={selectHandler} checked={checked} />
+          </div>
           {description && <p>Description - {description}</p>}
           <p>Due Date - {duedate}</p>
           <p>Priority - {priority}</p>
