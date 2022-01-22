@@ -15,10 +15,14 @@ export const todoSlice = createSlice({
     deleteAllTodos: (state, action) => {
       state.todos = [];
     },
+    deleteTodo: (state, action) => {
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload);
+      localStorage.setItem("todos", JSON.stringify(state.todos));
+    },
   },
 });
 
-export const { addTodo, deleteAllTodos } = todoSlice.actions;
+export const { addTodo, deleteAllTodos, deleteTodo } = todoSlice.actions;
 
 export const getTodos = (state) => state.todos.todos;
 

@@ -19,9 +19,7 @@ const MainNavigation = () => {
       </div>
       <nav>
         <ul>
-          <li>
-            <Link to="/create-todo-task">New Task</Link>
-          </li>
+          <li>{authToken && <Link to="/create-todo-task">New Task</Link>}</li>
           <li>{authToken && <span onClick={LogoutHandler}>Logout</span>}</li>
         </ul>
       </nav>

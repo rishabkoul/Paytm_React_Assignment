@@ -1,0 +1,39 @@
+.todo_container {
+  margin-bottom: 10px;
+}
+
+.todo {
+  padding: 10px;
+}
+
+.todo > h3 {
+  font-size: x-large;
+}
+.actions,
+.action_white {
+  margin-top: 10px;
+}
+
+.actions > button {
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 4px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.action_white > button {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 4px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
