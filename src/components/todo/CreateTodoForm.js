@@ -33,7 +33,7 @@ const CreateTodoForm = ({ todo, formTitle, disabled }) => {
     const enteredDescription = descriptionRef.current.value;
     const enteredDueDate = duedateRef.current.value;
     const enteredPriority = priorityRef.current.value;
-    if (!enteredTitle.match(/^[0-9a-zA-Z]+$/)) {
+    if (!enteredTitle.match(/^[0-9a-zA-Z\s]+$/)) {
       return alert("Enter alphanumeric Title");
     }
     if (todo) {
